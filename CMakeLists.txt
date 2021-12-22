@@ -20,8 +20,13 @@ endif(NOT X11_FOUND)
 include_directories(${X11_INCLUDE_DIR})
 
 # Import Opencv
+set(CMAKE_PREFIX_PATH "/usr/local/share/OpenCV")
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
+
+# include opencv-contrib
+#INCLUDE_DIRECTORIES("/home/vangy/Software/opencv/opencv_contrib-3.4.16/modules/xfeatures2d/include")
+
 # directory of opencv library
 link_directories(${OpenCV_LIBRARY_DIRS})
 
@@ -52,10 +57,10 @@ target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 
 # HKVS libraries
 
-
 IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
     MESSAGE(STATUS "current platform: Linux")
     target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/libMvCameraControl.so)
+
 
     target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libhpr.so)
     target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCCore.so)
