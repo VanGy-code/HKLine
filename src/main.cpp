@@ -19,7 +19,7 @@ void PressEnterToExit(void)
 auto* processor = new FrameProcessor();
 int main(){
 //    cv::Mat image;
-
+//
 //    int nRet = camera->connectCamera();
 //    if(nRet != MV_OK) return 0;
 //    nRet = camera->readBufSize();
@@ -49,11 +49,15 @@ int main(){
 //        cv::imwrite(filename, image);
 //        std::cout<< "Save " + filename << std::endl;
 //    }
-    std::vector<cv::Mat> images = processor->readTestImage();
+    std::vector<cv::Mat> images = processor->readTestImage("output/*.bmp");
     if (!images.empty()){
         std::cout << "Get Images Succeed!" << std::endl;
+        std::cout << "Image numbers:" <<  images.size() <<std::endl;
     }
-    processor->forceCombine(images);
+//    processor->forceCombine(images);
+    processor->combine(images, true, "./", ".bmp");
+//    processor->surfCombine(images);
+//    processor->briskCombine(images);
 
 
 //
