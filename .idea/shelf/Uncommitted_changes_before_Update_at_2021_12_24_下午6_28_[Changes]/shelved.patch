@@ -1,0 +1,697 @@
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100755
+--- /dev/null	(date 1639651980420)
++++ b/.idea/.gitignore	(date 1639651980420)
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Editor-based HTTP Client requests
++/httpRequests/
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100755
+--- /dev/null	(date 1640341270147)
++++ b/.idea/modules.xml	(date 1640341270147)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/HKLIne.iml" filepath="$PROJECT_DIR$/.idea/HKLIne.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100755
+--- /dev/null	(date 1639651975496)
++++ b/.idea/vcs.xml	(date 1639651975496)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># HKLIne\nHKvision Line Camera\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision 8edbde29dbd043e2752feb1375385245d29c67f6)
++++ b/README.md	(date 1639834739290)
+@@ -1,2 +1,75 @@
+-# HKLIne
+-HKvision Line Camera
++# 一种大幅面瓷砖表面信息高精度快速采集方法及装置
++
++## 环境配置
++
++### 海康工业相机SDK
++
++### opencv
++
++### opencv-contirb
++
++## 工业线阵相机的高效采样装置
++
++## 图像拼接与融合
++
++为了保证相邻相机首尾相连处数据不丢失，必须使两相机之间有效像素部分重合。
++
++将下面两张图作为输入，测试算法的性能。
++
++> 无法对无镜头相机采集的图像进行拼接，因为根本识别不到特征点
++
++![1.png](https://s2.loli.net/2021/12/18/2m6b3uCEMprKkPx.png) ![2.png](https://s2.loli.net/2021/12/18/q1sW5uBP6gvyZfe.png)
++
++### 冗余图像特征点提取
++
++用SIFT算法来实现图像拼接是很常用的方法，但是因为SIFT计算量很大，所以在速度要求很高的场合下不再适用。
++所以，它的改进方法SURF因为在速度方面有了明显的提高（速度是SIFT的3倍）。虽说SURF精确度和稳定性不及SIFT，但是其综合能力还是优越一些。
++同样，在计算速度方面作了优化的还有ORB算法。ORB（Oriented FAST and Rotated BRIEF）是一种快速特征点提取和描述的算法。
++ORB特征是将FAST特征点的检测方法与BRIEF特征描述子结合起来，并在它们原来的基础上做了改进与优化。
++据说，ORB算法的速度是sift的100倍，是surf的10倍。
++
++根据应用场景的特点，我复现了Orb和Surf算法
++
++### 特征点匹配
++
++- Surf特征点匹配方法
++  ![surf_match.png](https://s2.loli.net/2021/12/18/rqgOF7DtzB9ARG3.png)
++- Orb特征点匹配方法
++  ![orb_combine.png](https://s2.loli.net/2021/12/18/rbMndcWKixlEwuJ.png)
++
++### 计算图像配准点与图像配准
++
++- 对Surf提取的特征点进行配准
++  ![surf_result.jpg](https://s2.loli.net/2021/12/18/vdUG1DVWHZr9Njy.jpg)
++- 对Orb提取的特征点进行配准
++  ![orb_result.jpg](https://s2.loli.net/2021/12/18/PpvFiq4xweZByOd.jpg)
++
++### 配准图像优化
++
++在拼接图的交界处，两图因为光照色泽的原因使得两图交界处的过渡很糟糕，所以需要特定的处理解决这种不自然。
++
++利用加权融合，在重叠部分由前一幅图像慢慢过渡到第二幅图像，即将图像的重叠区域的像素值按一定的权值相加合成新的图像。
++
++![1639827466571.png](https://s2.loli.net/2021/12/18/3yv5u9pqrQXnA12.png)
++
++### 使用线阵相机的图像拼接与融合
++
++目前观察到，这类拼接算法都是左右图像拼接。所以，在拼接之前，要对采集到的图像顺时针旋转90度，再进行拼接。
++
++> 案例图像为400x200的分辨率，两种拼接耗时可以控制在毫秒级。在实际应用场景的速度还有待测试。
++
++## 参考资料
++
++https://blog.csdn.net/sss_369/article/details/87740843
++
++https://www.cnblogs.com/skyfsm/p/7401523.html
++
++https://www.cnblogs.com/skyfsm/p/7411961.html
++
++https://blog.csdn.net/Marchal_G/article/details/51066901
++
++https://zhuanlan.zhihu.com/p/71777362
++
++https://blog.csdn.net/qq_26907755/article/details/81772309?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-3&spm=1001.2101.3001.4242.2
++
++https://blog.csdn.net/weixin_42717395/article/details/85768313
+Index: .idea/HKLIne.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/HKLIne.iml b/.idea/HKLIne.iml
+new file mode 100755
+--- /dev/null	(date 1640341270143)
++++ b/.idea/HKLIne.iml	(date 1640341270143)
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module classpath="CMake" type="CPP_MODULE" version="4" />
+\ No newline at end of file
+Index: src/main.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <iostream>\n#include <cstdio>\n//#include <vector>\n#include \"unistd.h\"\n#include \"include/LineCamera.h\"\n#include \"include/FrameProcessor.h\"\n\nvoid PressEnterToExit(void)\n{\n    int c;\n    while ( (c = getchar()) != '\\n' && c != EOF );\n    fprintf( stderr, \"\\nPress enter to exit.\\n\");\n    while( getchar() != '\\n');\n    sleep(1);\n    CLCamera::isCollecting = false;\n}\n\n//auto *camera = new CLCamera();\nauto* processor = new FrameProcessor();\nint main(){\n//    cv::Mat image;\n\n//    int nRet = camera->connectCamera();\n//    if(nRet != MV_OK) return 0;\n//    nRet = camera->readBufSize();\n//    if(nRet != MV_OK) return 0;\n//    nRet = camera->setTriggerMode(1);\n//    if(nRet != MV_OK) return 0;\n//    nRet = camera->setTriggerSource();\n//    if(nRet != MV_OK) return 0;\n//    nRet = camera->setCameraWidth(4096);\n//    if(nRet != MV_OK) return 0;\n//    nRet = camera->setCameraHeight(120);\n//    if(nRet != MV_OK) return 0;\n//    nRet = camera->setExposureTime(1000);\n//    if(nRet != MV_OK) return 0;\n//    nRet = camera->startCamera();\n//    if(nRet != MV_OK) return 0;\n//\n//\n//    int count = 0;\n//    while (count++ < 15){\n//        nRet = camera->softTrigger();\n//        if(nRet != MV_OK) return 0;\n//        nRet = camera->ReadBuffer(image);\n//        if(nRet != MV_OK) return 0;\n//        CLCamera::isCollecting = true;\n//        std::string filename = \"output/image_\" + std::to_string(count) + \".bmp\";\n//        cv::imwrite(filename, image);\n//        std::cout<< \"Save \" + filename << std::endl;\n//    }\n    std::vector<cv::Mat> images = processor->readTestImage();\n    if (!images.empty()){\n        std::cout << \"Get Images Succeed!\" << std::endl;\n    }\n    processor->forceCombine(images);\n\n\n//\n//    nRet = camera->closeCamera();\n//    if(nRet != MV_OK) return 0;\n    return 0;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main.cpp b/src/main.cpp
+--- a/src/main.cpp	(revision 8edbde29dbd043e2752feb1375385245d29c67f6)
++++ b/src/main.cpp	(date 1639831939469)
+@@ -19,7 +19,7 @@
+ auto* processor = new FrameProcessor();
+ int main(){
+ //    cv::Mat image;
+-
++//
+ //    int nRet = camera->connectCamera();
+ //    if(nRet != MV_OK) return 0;
+ //    nRet = camera->readBufSize();
+@@ -49,11 +49,15 @@
+ //        cv::imwrite(filename, image);
+ //        std::cout<< "Save " + filename << std::endl;
+ //    }
+-    std::vector<cv::Mat> images = processor->readTestImage();
++    std::vector<cv::Mat> images = processor->readTestImage("output/*.bmp");
+     if (!images.empty()){
+         std::cout << "Get Images Succeed!" << std::endl;
++        std::cout << "Image numbers:" <<  images.size() <<std::endl;
+     }
+-    processor->forceCombine(images);
++//    processor->forceCombine(images);
++    processor->combine(images, true, "./", ".bmp");
++//    processor->surfCombine(images);
++//    processor->briskCombine(images);
+ 
+ 
+ //
+Index: src/FrameProcessor.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by vangy on 2021/10/24.\n//\n\n#include \"FrameProcessor.h\"\n\nint FrameProcessor::forceCombine(std::vector<cv::Mat> frameBucket) {\n    /**\n     * @description: 硬拼接\n     */\n    int height = 120 * frameBucket.size();\n    int width = 4096;\n    cv::Mat result = cv::Mat(height, width,CV_8UC3, cv::Scalar::all(0));\n    int current_y = 0;\n    for (cv::Mat frame : frameBucket){\n        cv::Mat ROI = result(cv::Rect(0, current_y, width, frame.rows));\n        current_y += 120;\n        frame.copyTo(ROI);\n    }\n//    cv::imshow(\"reuslt\", result);\n    cv::imwrite(\"output/result.bmp\", result);\n    std::cout << \"拼接完成\" << std::endl;\n    return 0;\n}\n\nstd::vector<cv::Mat> FrameProcessor::readTestImage() {\n    std::vector<cv::Mat> imgs;\n    std::vector<std::string> imageList;\n    cv::glob(\"output/*.bmp\", imageList, false);\n\n    for(const std::string& img_name : imageList)\n    {\n        cv::Mat src = cv::imread(img_name);\n        if (src.type() == CV_8UC3)//彩色\n        {\n            //判断是否正确读入图片\n            if (src.empty()) {\n                std::cout << \"could not load image...\" << std::endl;\n                break;\n            }\n            imgs.push_back(src);\n        }\n    }\n    return imgs;\n}\n\nint FrameProcessor::stitcherCombine(std::vector <Mat> frameBucket) {\n    /**\n     * @description: 软拼接\n     */\n\n    return 0;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/FrameProcessor.cpp b/src/FrameProcessor.cpp
+--- a/src/FrameProcessor.cpp	(revision 8edbde29dbd043e2752feb1375385245d29c67f6)
++++ b/src/FrameProcessor.cpp	(date 1639832489982)
+@@ -4,29 +4,69 @@
+ 
+ #include "FrameProcessor.h"
+ 
+-int FrameProcessor::forceCombine(std::vector<cv::Mat> frameBucket) {
++std::time_t FrameProcessor::getTimeStamp() {
++    std::chrono::time_point<std::chrono::system_clock,std::chrono::milliseconds> tp = std::chrono::time_point_cast<std::chrono::milliseconds>(std::chrono::system_clock::now());//获取当前时间点
++    std::time_t timestamp =  tp.time_since_epoch().count(); //计算距离1970-1-1,00:00的时间长度
++    return timestamp;
++}
++
++
++void FrameProcessor::flipRight(cv::Mat &matSrc) {
++    cv::Mat dst;
++    transpose(matSrc, dst);
++    flip(dst, matSrc, 1);
++}
++
++int FrameProcessor::combine(std::vector<cv::Mat>& frameBucket, bool softCombine, const std::string savePath, const std::string saveType) {
+     /**
+-     * @description: 硬拼接
++     * @description:
+      */
+-    int height = 120 * frameBucket.size();
+-    int width = 4096;
+-    cv::Mat result = cv::Mat(height, width,CV_8UC3, cv::Scalar::all(0));
+-    int current_y = 0;
+-    for (cv::Mat frame : frameBucket){
+-        cv::Mat ROI = result(cv::Rect(0, current_y, width, frame.rows));
+-        current_y += 120;
+-        frame.copyTo(ROI);
+-    }
+-//    cv::imshow("reuslt", result);
+-    cv::imwrite("output/result.bmp", result);
+-    std::cout << "拼接完成" << std::endl;
+-    return 0;
++    if(frameBucket.empty()) return -1;
++
++    std::time_t timestamp;
++    std::string filepath;
++
++    if(softCombine){
++        flipRight(frameBucket[0]);
++        cv::Mat result = frameBucket[0];
++        for (int i = 1; i < frameBucket.size(); i++) {
++            // TODO: test LineCamera
++            flipRight(frameBucket[i]);
++            result = orbCombine(result, frameBucket[i]);
++        }
++
++        timestamp = getTimeStamp();
++        filepath = std::to_string(timestamp);
++        filepath = savePath + filepath + saveType;
++        cv::imwrite(filepath, result);
++        std::cout << "拼接完成" << std::endl;
++        return 0;
++    }
++    else{
++        // TODO: Force combine
++        int height = 120 * frameBucket.size();
++        int width = 4096;
++        cv::Mat result = cv::Mat(height, width,CV_8UC3, cv::Scalar::all(0));
++        int current_y = 0;
++        for (cv::Mat frame : frameBucket){
++            cv::Mat ROI = result(cv::Rect(0, current_y, width, frame.rows));
++            current_y += 120;
++            frame.copyTo(ROI);
++        }
++        cv::imwrite("output/result.bmp", result);
++        std::cout << "拼接完成" << std::endl;
++        return 0;
++    }
+ }
+ 
+-std::vector<cv::Mat> FrameProcessor::readTestImage() {
+-    std::vector<cv::Mat> imgs;
+-    std::vector<std::string> imageList;
+-    cv::glob("output/*.bmp", imageList, false);
++std::vector<cv::Mat> FrameProcessor::readTestImage(const std::string pathPattern) {
++    std::vector<cv::Mat> images;
++    std::vector<cv::String> imageList;
++
++    // glob by order
++    cv::glob(pathPattern, imageList, false);
++    sort(imageList.begin(), imageList.end(),
++         [](const std::string& a, const std::string& b) {return std::atoi(a.c_str()) < std::atoi(b.c_str()); });
+ 
+     for(const std::string& img_name : imageList)
+     {
+@@ -38,16 +78,289 @@
+                 std::cout << "could not load image..." << std::endl;
+                 break;
+             }
+-            imgs.push_back(src);
++            images.push_back(src);
+         }
+     }
+-    return imgs;
++    return images;
+ }
++
++void FrameProcessor::CalcCorners(const cv::Mat &H, const cv::Mat &src) {
++    double v2[] = { 0, 0, 1 };//左上角
++    double v1[3]; //变换后的坐标值
++    cv::Mat V2 = cv::Mat(3, 1, CV_64FC1, v2);  //列向量
++    cv::Mat V1 = cv::Mat(3, 1, CV_64FC1, v1);  //列向量
++    V1 = H * V2;
++
++    //左上角(0,0,1)
++//    std::cout << "V2: " << V2 << std::endl;
++//    std::cout << "V1: " << V1 << std::endl;
++    corners.left_top.x = v1[0] / v1[2];
++    corners.left_top.y = v1[1] / v1[2];
++
++    //左下角(0,src.rows,1)
++    v2[0] = 0;
++    v2[1] = src.rows;
++    v2[2] = 1;
++    V2 = cv::Mat(3, 1, CV_64FC1, v2);  //列向量
++    V1 = cv::Mat(3, 1, CV_64FC1, v1);  //列向量
++    V1 = H * V2;
++    corners.left_bottom.x = v1[0] / v1[2];
++    corners.left_bottom.y = v1[1] / v1[2];
++
++    //右上角(src.cols,0,1)
++    v2[0] = src.cols;
++    v2[1] = 0;
++    v2[2] = 1;
++    V2 = cv::Mat(3, 1, CV_64FC1, v2);  //列向量
++    V1 = cv::Mat(3, 1, CV_64FC1, v1);  //列向量
++    V1 = H * V2;
++    corners.right_top.x = v1[0] / v1[2];
++    corners.right_top.y = v1[1] / v1[2];
++
++    //右下角(src.cols,src.rows,1)
++    v2[0] = src.cols;
++    v2[1] = src.rows;
++    v2[2] = 1;
++    V2 = cv::Mat(3, 1, CV_64FC1, v2);  //列向量
++    V1 = cv::Mat(3, 1, CV_64FC1, v1);  //列向量
++    V1 = H * V2;
++    corners.right_bottom.x = v1[0] / v1[2];
++    corners.right_bottom.y = v1[1] / v1[2];
++}
++
++void FrameProcessor::OptimizeSeam(cv::Mat &img1, cv::Mat &trans, cv::Mat &dst) {
++    int start = MIN(corners.left_top.x, corners.left_bottom.x);//开始位置，即重叠区域的左边界
++    double processWidth = img1.cols - start;//重叠区域的宽度
++    int rows = dst.rows;
++    int cols = img1.cols;	//注意，是列数*通道数
++    double alpha = 1;		//img1中像素的权重
++    for (int i = 0; i < rows; i++)
++    {
++        uchar* p = img1.ptr<uchar>(i);  //获取第i行的首地址
++        uchar* t = trans.ptr<uchar>(i);
++        uchar* d = dst.ptr<uchar>(i);
++        for (int j = start; j < cols; j++)
++        {
++            //如果遇到图像trans中无像素的黑点，则完全拷贝img1中的数据
++            if (t[j * 3] == 0 && t[j * 3 + 1] == 0 && t[j * 3 + 2] == 0)
++            {
++                alpha = 1;
++            }
++            else
++            {
++                //img1中像素的权重，与当前处理点距重叠区域左边界的距离成正比，实验证明，这种方法确实好
++                alpha = (processWidth - (j - start)) / processWidth;
++            }
++            d[j * 3] = p[j * 3] * alpha + t[j * 3] * (1 - alpha);
++            d[j * 3 + 1] = p[j * 3 + 1] * alpha + t[j * 3 + 1] * (1 - alpha);
++            d[j * 3 + 2] = p[j * 3 + 2] * alpha + t[j * 3 + 2] * (1 - alpha);
++        }
++    }
++}
+ 
+-int FrameProcessor::stitcherCombine(std::vector <Mat> frameBucket) {
++
++
++int FrameProcessor::surfCombine(std::vector<cv::Mat> frameBucket) {
+     /**
+      * @description: 软拼接
++     * 用SIFT算法来实现图像拼接是很常用的方法，但是因为SIFT计算量很大，所以在速度要求很高的场合下不再适用。
++     * 所以，它的改进方法SURF因为在速度方面有了明显的提高（速度是SIFT的3倍），所以在图像拼接领域还是大有作为。
++     * 虽说SURF精确度和稳定性不及SIFT，但是其综合能力还是优越一些。
+      */
++    int num_images = frameBucket.size();
++
++    //灰度图转换
++    std::vector<cv::Mat> images(num_images);
++    for (int i = 0; i < num_images; i++){
++        cvtColor(frameBucket[i], images[i], CV_RGB2GRAY);
++    }
++
++    cv::Ptr<cv::xfeatures2d::SURF> surf;
++
++    surf = cv::xfeatures2d::SURF::create(800);
++
++    //实例化一个暴力匹配器
++    cv::BFMatcher matcher;
++    cv::Mat c, d;
++    std::vector<cv::KeyPoint> key1, key2;
++
++    //DMatch是用来描述匹配好的一对特征点的类，包含这两个点之间的相关信息
++    //比如左图有个特征m，它和右图的特征点n最匹配，这个DMatch就记录它俩最匹配，并且还记录m和n的
++    //特征向量的距离和其他信息，这个距离在后面用来做筛选
++    std::vector<cv::DMatch> matches;
++
++
++    //输入图像，输入掩码，输入特征点，输出Mat，存放所有特征点的描述向量
++    //这个Mat行数为特征点的个数，列数为每个特征向量的尺寸，SURF是64（维）
++    surf->detectAndCompute(frameBucket[0], cv::Mat(), key1, c);
++    surf->detectAndCompute(frameBucket[1], cv::Mat(), key2, d);
++
++    std::cout << "descriptor1 depth" << c.depth() << ",type=" << c.type() << std::endl;
++    std::cout << "descriptor2 depth" << d.depth() << ",type=" << d.type() << std::endl;
++
++    //匹配，数据来源是特征向量，结果存放在DMatch类型里面
++    matcher.match(c, d, matches);
++
++    //sort函数对数据进行升序排列
++    //筛选匹配点，根据match里面特征对的距离从小到大排序
++    sort(matches.begin(), matches.end());
++    std::vector<cv::DMatch> good_matches;
++    int ptsPairs = std::min(50, (int)(matches.size() * 0.15));
++
++    for (int i = 0; i < ptsPairs; i++)
++    {
++        good_matches.push_back(matches[i]);//距离最小的50个压入新的DMatch
++    }
++
++    //drawMatches这个函数直接画出摆在一起的图
++    cv::Mat outImg;
++    //绘制匹配点
++    drawMatches(frameBucket[0], key1, frameBucket[1], key2, good_matches, outImg,
++                cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
++
++    cv::imwrite("test/out/surf_match.png", outImg);
++
++    //计算图像配准点
++    std::vector<cv::Point2f> imagePoints1, imagePoints2;
++
++    for (auto & good_match : good_matches)
++    {
++        imagePoints1.push_back(key1[good_match.queryIdx].pt);
++        imagePoints2.push_back(key2[good_match.trainIdx].pt);
++    }
++
++    //获取图像1到图像2的投影映射矩阵 尺寸为3*3
++    cv::Mat homo = findHomography(imagePoints2, imagePoints1, CV_RANSAC);
++    //也可以使用getPerspectiveTransform方法获得透视变换矩阵，不过要求只能有4个点，效果稍差
++    //Mat   homo=getPerspectiveTransform(imagePoints1,imagePoints2);
++    std::cout << "变换矩阵为：\n" << homo << std::endl; //输出映射矩阵
++
++    //计算配准图的四个顶点坐标
++    CalcCorners(homo, frameBucket[1]);
++    std::cout << "left_top:" << corners.left_top << std::endl;
++    std::cout << "left_bottom:" << corners.left_bottom << std::endl;
++    std::cout << "right_top:" << corners.right_top << std::endl;
++    std::cout << "right_bottom:" << corners.right_bottom << std::endl;
++
++    //图像配准
++    cv::Mat imageTransform1, imageTransform2;
++    warpPerspective(frameBucket[1], imageTransform2, homo, cv::Size(MAX(corners.right_top.x, corners.right_bottom.x), frameBucket[0].rows));
++    //warpPerspective(a, imageTransform2, adjustMat*homo, Size(b.cols*1.3, b.rows*1.8));
++    imwrite("test/out/surf_trans.jpg", imageTransform2);
++
++    //创建拼接后的图,需提前计算图的大小
++    int dst_width = imageTransform2.cols;  //取最右点的长度为拼接图的长度
++    int dst_height = frameBucket[0].rows;
++
++    cv::Mat dst(dst_height, dst_width, CV_8UC3);
++    dst.setTo(0);
++
++    imageTransform2.copyTo(dst(cv::Rect(0, 0, imageTransform2.cols, imageTransform2.rows)));
++    frameBucket[0].copyTo(dst(cv::Rect(0, 0, frameBucket[0].cols, frameBucket[0].rows)));
++
++    cv::imwrite("test/out/surf_result.jpg", dst);
++    OptimizeSeam(frameBucket[0], imageTransform2, dst);
++    cv::imwrite("test/out/opm_surf_result.jpg", dst);
+ 
+     return 0;
+ }
++
++
++cv::Mat FrameProcessor::orbCombine(cv::Mat &src, cv::Mat &transform) {
++    /**
++     * @description: ORB（Oriented FAST and Rotated BRIEF）是一种快速特征点提取和描述的算法。
++     * ORB特征是将FAST特征点的检测方法与BRIEF特征描述子结合起来，并在它们原来的基础上做了改进与优化。据说，ORB算法的速度是sift的100倍，是surf的10倍。
++     */
++
++
++    //提取特征点
++    cv::Ptr<cv::ORB> orb = cv::ORB::create(800);
++
++    // 保存特征点
++    std::vector<cv::KeyPoint> keyPoint1;
++    std::vector<cv::KeyPoint> keyPoint2;
++
++    // 特征描述子
++    cv::Mat descriptor1, descriptor2;
++    orb->detectAndCompute(src, cv::Mat(), keyPoint1, descriptor1);
++    orb->detectAndCompute(transform, cv::Mat(), keyPoint2, descriptor2);
++
++
++    // Flann匹配, 算法更快但是找到的是最近邻近似匹配，所以当我们需要找到一个相对好的匹配但是不需要最佳匹配的时候往往使用FlannBasedMatcher.
++    // BRIEF与ORB特征是二进制的CV_8U而SIFT与SURF特征数据是浮点数，FLANN默认的匹配是基于浮点数运算计算距离，所以导致了类型不支持错误，
++    // 这个时候只要使用如下的方法重新构造一下FLANN指针，然后调用match方法即可。
++    //    cv::Ptr<cv::DescriptorMatcher> matcher = cv::makePtr<cv::FlannBasedMatcher>(cv::makePtr<cv::flann::LshIndexParams>(12, 20, 2));
++    cv::BFMatcher matcher;
++    // 保存匹配的结果
++    std::vector<cv::DMatch>matches;
++
++
++    //在descriptor_2中匹配descriptor_1中含有的特征描述子匹配
++    matcher.match(descriptor1, descriptor2, matches, cv::Mat());
++    sort(matches.begin(), matches.end());
++//    std::cout << "matches.size=" << matches.size() << std::endl;
++
++    std::vector<cv::DMatch> good_matches;
++    int ptsPairs = std::min(50, (int)(matches.size() * 0.15));
++//    std::cout << ptsPairs << std::endl;
++    for (int i = 0; i < ptsPairs; i++)
++    {
++        good_matches.push_back(matches[i]);//距离最小的50个压入新的DMatch
++    }
++
++    //    cv::Mat outImg;
++    //    //drawMatches这个函数直接画出摆在一起的图
++    //    //绘制匹配点
++    //    drawMatches(src, keyPoint1, transform, keyPoint2, good_matches, outImg,
++    //                cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
++    //    cv::imwrite("test/out/orb_combine.png", outImg);
++
++    //计算图像配准点
++    std::vector<cv::Point2f> imagePoints1, imagePoints2;
++
++    for (auto & good_match : good_matches)
++    {
++        imagePoints1.push_back(keyPoint1[good_match.queryIdx].pt);
++        imagePoints2.push_back(keyPoint2[good_match.trainIdx].pt);
++    }
++
++    //获取图像1到图像2的投影映射矩阵 尺寸为3*3
++
++    cv::Mat homo = findHomography(imagePoints2, imagePoints1, CV_RANSAC);
++    //也可以使用getPerspectiveTransform方法获得透视变换矩阵，不过要求只能有4个点，效果稍差
++    //Mat   homo=getPerspectiveTransform(imagePoints1,imagePoints2);
++
++//    //获取最强配对点在原始图像和矩阵变换后图像上的对应位置，用于图像拼接点的定位
++//    cv::Mat adjustMat = (cv::Mat_<double>(3,3) << 1.0,0,src.cols,0,1.0,0,0,0,1.0);
++//    cv::Mat adjustHomo = adjustMat * homo;
++
++    //计算配准图的四个顶点坐标
++    CalcCorners(homo, transform);
++
++    //图像配准
++    cv::Mat imageTransform;
++    warpPerspective(transform, imageTransform, homo, cv::Size(MAX(corners.right_top.x, corners.right_bottom.x), src.rows));
++    //warpPerspective(a, imageTransform2, adjustMat*homo, Size(b.cols*1.3, b.rows*1.8));
++
++    //    imwrite("test/out/orb_trans.jpg", imageTransform);
++
++    //创建拼接后的图,需提前计算图的大小
++    //取最右点的长度为拼接图的长度
++    int dst_width = imageTransform.cols;
++    int dst_height = src.rows;
++
++    cv::Mat dst(dst_height, dst_width, CV_8UC3);
++    dst.setTo(0);
++
++    imageTransform.copyTo(dst(cv::Rect(0, 0, imageTransform.cols, imageTransform.rows)));
++    src.copyTo(dst(cv::Rect(0, 0, src.cols, src.rows)));
++
++    //    cv::imwrite("test/out/orb_result.jpg", dst);
++    OptimizeSeam(src, imageTransform, dst);
++
++    return dst;
++}
++
++
++
++
+Index: include/FrameProcessor.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by vangy on 2021/10/24.\n//\n\n#ifndef HKVS_DISPLAYDEMO_FRAMEPROCESSOR_H\n#define HKVS_DISPLAYDEMO_FRAMEPROCESSOR_H\n\n#include <vector>\n#include <fstream>\n\n#include \"opencv2/core/core.hpp\"\n#include \"opencv2/opencv.hpp\"\n#include \"opencv2/highgui/highgui.hpp\"\n\n\nclass FrameProcessor{\nprivate:\n\npublic:\n    FrameProcessor()= default;\n    ~FrameProcessor()= default;\n    std::vector<cv::Mat> readTestImage();\n    int forceCombine(std::vector<cv::Mat> frameBucket);\n    int stitcherCombine(std::vector<cv::Mat> frameBucket);\n};\n\n#endif //HKVS_DISPLAYDEMO_FRAMEPROCESSOR_H\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/include/FrameProcessor.h b/include/FrameProcessor.h
+--- a/include/FrameProcessor.h	(revision 8edbde29dbd043e2752feb1375385245d29c67f6)
++++ b/include/FrameProcessor.h	(date 1639832150059)
+@@ -7,21 +7,46 @@
+ 
+ #include <vector>
+ #include <fstream>
++#include <string>
++#include <iostream>
++#include <ctime>
++#include <chrono>
++#include <cstdlib>
+ 
+ #include "opencv2/core/core.hpp"
+ #include "opencv2/opencv.hpp"
+ #include "opencv2/highgui/highgui.hpp"
++#include "opencv2/highgui.hpp"
+ 
++#include <opencv2/features2d/features2d.hpp>
++#include <opencv2/xfeatures2d.hpp>
++#include "opencv2/xfeatures2d/nonfree.hpp"
++
++typedef struct
++{
++    cv::Point2f left_top;
++    cv::Point2f left_bottom;
++    cv::Point2f right_top;
++    cv::Point2f right_bottom;
++}four_corners_t;
+ 
+ class FrameProcessor{
+ private:
+-
++    four_corners_t corners;
+ public:
+     FrameProcessor()= default;
+     ~FrameProcessor()= default;
+-    std::vector<cv::Mat> readTestImage();
+-    int forceCombine(std::vector<cv::Mat> frameBucket);
+-    int stitcherCombine(std::vector<cv::Mat> frameBucket);
++    std::vector<cv::Mat> readTestImage(const std::string pathPattern);
++
++    void flipRight(cv::Mat &matSrc);
++
++    void CalcCorners(const cv::Mat& H, const cv::Mat& src);
++    void OptimizeSeam(cv::Mat& img1, cv::Mat& trans, cv::Mat& dst);
++
++    int combine(std::vector<cv::Mat>& frameBucket, bool softCombine, const std::string savePath, const std::string saveType);
++    cv::Mat orbCombine(cv::Mat &src, cv::Mat &transform);
++    int surfCombine(std::vector<cv::Mat> frameBucket);
++    static std::time_t getTimeStamp();
+ };
+ 
+ #endif //HKVS_DISPLAYDEMO_FRAMEPROCESSOR_H
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100755
+--- /dev/null	(date 1639651975492)
++++ b/.idea/misc.xml	(date 1639651975492)
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
++</project>
+\ No newline at end of file
+Index: CMakeLists.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>cmake_minimum_required(VERSION 3.20)\n\n#设置项目名称\nSET(PROJECT_NAME HKVS_DisplayDemo)\n\nproject(${PROJECT_NAME})\n\nset(CMAKE_CXX_STANDARD 14)\n\ninclude_directories(${PROJECT_SOURCE_DIR})\n\n# Import Self-defined lib\ninclude_directories(include/)\n\n# Import X11\nfind_package(X11 REQUIRED)\nif(NOT X11_FOUND)\n    message(\"ERROR: x11 not found\")\nendif(NOT X11_FOUND)\ninclude_directories(${X11_INCLUDE_DIR})\n\n# Import Opencv\nfind_package(OpenCV REQUIRED)\ninclude_directories(${OpenCV_INCLUDE_DIRS})\n# directory of opencv library\nlink_directories(${OpenCV_LIBRARY_DIRS})\n\n# print opencv status\nMESSAGE(STATUS \"Project: ${PROJECT_NAME}\")\nMESSAGE(STATUS \"OpenCV library status:\")\nMESSAGE(STATUS \"    version: ${OpenCV_VERSION}\")\nMESSAGE(STATUS \"    libraries: ${OpenCV_LIBS}\")\nMESSAGE(STATUS \"    include path: ${OpenCV_INCLUDE_DIRS}\")\n\n# Import Threads\nfind_package(Threads)\n\n# Import HKVS SDK Head\nlink_directories(${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/)\nlink_directories(${PROJECT_SOURCE_DIR}/lib/)\nlink_directories(${PROJECT_SOURCE_DIR}/src/)\n\nadd_library(camera include/LineCamera.h src/LineCamera.cpp src/FrameProcessor.cpp include/FrameProcessor.h)\n\n#ADD_EXECUTABLE(${PROJECT_NAME} main.cpp ${DIR_SRCS})\nADD_EXECUTABLE(${PROJECT_NAME} src/main.cpp src/LineCamera.cpp)\n# opencv libraries\ntarget_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})\n\n# multi-thread libraries\n#target_link_libraries(${PROJECT_NAME} /usr/lib/x86_64-linux-gnu/libpthread.so)\n\n# HKVS libraries\n\n\nIF (CMAKE_SYSTEM_NAME MATCHES \"Linux\")\n    MESSAGE(STATUS \"current platform: Linux\")\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/libMvCameraControl.so)\n\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libhpr.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCCore.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libhcnetsdk.so)\n\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libanalyzedata.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCAlarm.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCCoreDevCfg.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCDisplay.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCGeneralCfgMgr.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCIndustry.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCPlayBack.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCPreview.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCVoiceTalk.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libiconv2.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libStreamTransClient.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libSystemTransform.so)\n\n    #以下3个包有引用关系，必须按顺序添加。\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libPlayCtrl.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libSuperRender.so)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libAudioRender.so)\nELSEIF (CMAKE_SYSTEM_NAME MATCHES \"Windows\")\n    MESSAGE(STATUS \"current platform: Windows\")\nELSEIF (APPLE)\n    MESSAGE(STATUS \"current platform: MacOS\")\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/MacPackage/libMvCameraControl.dylib)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/MacPackage/libMediaProcess.dylib)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/MacPackage/libMVGigEVisionSDK.dylib)\n    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/MacPackage/libusb-1.0.0.dylib)\nENDIF (CMAKE_SYSTEM_NAME MATCHES \"Linux\")\n\ntarget_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})\n\ntarget_link_libraries(${PROJECT_NAME} camera)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	(revision 8edbde29dbd043e2752feb1375385245d29c67f6)
++++ b/CMakeLists.txt	(date 1640341572055)
+@@ -20,8 +20,13 @@
+ include_directories(${X11_INCLUDE_DIR})
+ 
+ # Import Opencv
++set(CMAKE_PREFIX_PATH "/usr/local/share/OpenCV")
+ find_package(OpenCV REQUIRED)
+ include_directories(${OpenCV_INCLUDE_DIRS})
++
++# include opencv-contrib
++INCLUDE_DIRECTORIES("/home/vangy/Software/opencv/opencv_contrib-3.4.16/modules/xfeatures2d/include")
++
+ # directory of opencv library
+ link_directories(${OpenCV_LIBRARY_DIRS})
+ 
+@@ -52,11 +57,11 @@
+ 
+ # HKVS libraries
+ 
+-
+ IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+     MESSAGE(STATUS "current platform: Linux")
+     target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/libMvCameraControl.so)
+ 
++
+     target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libhpr.so)
+     target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libHCCore.so)
+     target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/HCNetSDKCom/libhcnetsdk.so)

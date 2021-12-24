@@ -1,0 +1,264 @@
+<changelist name="Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]" date="1640341740481" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2021/12/24 下午6:28 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libHCCoreDevCfg.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libHCCoreDevCfg.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libHCCoreDevCfg.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libiconv2.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libiconv2.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libiconv2.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/out/orb_combine.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/orb_combine.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/out/ORB.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/ORB.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_2.bmp" />
+    <option name="AFTER_PATH" value="output/image_2.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_2.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libHCVoiceTalk.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libHCVoiceTalk.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libHCVoiceTalk.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libHCCore.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libHCCore.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libHCCore.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libhpr.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libhpr.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libhpr.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_6.bmp" />
+    <option name="AFTER_PATH" value="output/image_6.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_6.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libHCAlarm.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libHCAlarm.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libHCAlarm.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_12.bmp" />
+    <option name="AFTER_PATH" value="output/image_12.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_12.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libcrypto.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libcrypto.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libcrypto.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/out/opm_surf_result.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/opm_surf_result.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_5.bmp" />
+    <option name="AFTER_PATH" value="output/image_5.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_5.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/out/surf_trans.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/surf_trans.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libz.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libz.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libz.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_13.bmp" />
+    <option name="AFTER_PATH" value="output/image_13.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_13.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libSuperRender.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libSuperRender.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libSuperRender.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libopenal.so.1" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libopenal.so.1" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libopenal.so.1" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/1.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/1.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_8.bmp" />
+    <option name="AFTER_PATH" value="output/image_8.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_8.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/out/1639827466571.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/1639827466571.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_4.bmp" />
+    <option name="AFTER_PATH" value="output/image_4.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_4.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_10.bmp" />
+    <option name="AFTER_PATH" value="output/image_10.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_10.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/out/orb_result.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/orb_result.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libNPQos.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libNPQos.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libNPQos.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libanalyzedata.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libanalyzedata.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libanalyzedata.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/out/opm_orb_result.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/opm_orb_result.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_9.bmp" />
+    <option name="AFTER_PATH" value="output/image_9.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_9.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libAudioIntercom.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libAudioIntercom.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libAudioIntercom.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libHCDisplay.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libHCDisplay.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libHCDisplay.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libHCPlayBack.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libHCPlayBack.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libHCPlayBack.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_15.bmp" />
+    <option name="AFTER_PATH" value="output/image_15.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_15.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/2.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/2.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libStreamTransClient.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libStreamTransClient.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libStreamTransClient.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libPlayCtrl.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libPlayCtrl.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libPlayCtrl.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_3.bmp" />
+    <option name="AFTER_PATH" value="output/image_3.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_3.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/out/orb_trans.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/orb_trans.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libAudioRender.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libAudioRender.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libAudioRender.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_11.bmp" />
+    <option name="AFTER_PATH" value="output/image_11.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_11.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_7.bmp" />
+    <option name="AFTER_PATH" value="output/image_7.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_7.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/out/surf_match.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/surf_match.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libHCIndustry.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libHCIndustry.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libHCIndustry.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libhcnetsdk.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libhcnetsdk.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libhcnetsdk.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libHCPreview.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libHCPreview.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libHCPreview.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libssl.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libssl.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libssl.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_1.bmp" />
+    <option name="AFTER_PATH" value="output/image_1.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_1.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="output/image_14.bmp" />
+    <option name="AFTER_PATH" value="output/image_14.bmp" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/image_14.bmp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libcrypto.so.1.0.0" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libcrypto.so.1.0.0" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libcrypto.so.1.0.0" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libHCGeneralCfgMgr.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libHCGeneralCfgMgr.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libHCGeneralCfgMgr.so" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="test/out/surf_result.jpg" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/surf_result.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="lib/HCNetSDKCom/libSystemTransform.so" />
+    <option name="AFTER_PATH" value="lib/HCNetSDKCom/libSystemTransform.so" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_12_24_下午6_28_[Changes]/libSystemTransform.so" />
+  </binary>
+</changelist>
